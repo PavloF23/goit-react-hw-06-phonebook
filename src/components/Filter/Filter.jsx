@@ -1,8 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilter } from 'redux/contactSlice';
+import { getFilter } from 'redux/selectors';
 import { Container, Label, Input, Span } from './Filter.styled';
 
-export function Filter({ value, onChange }) {
+export function Filter() {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const onChange = evt => {
+    const { value } = evt.currentTarget;
+    dispatch(setFilter(value));
+  };
+
   return (
     <Container>
     <Label>        
@@ -11,7 +20,7 @@ export function Filter({ value, onChange }) {
       name="filter" 
       pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
       title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-      value={value} 
+      value={filter} 
       onChange={onChange} 
       placeholder=" " 
       required
@@ -20,9 +29,4 @@ export function Filter({ value, onChange }) {
     </Label>
     </Container>
   );
-}
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
