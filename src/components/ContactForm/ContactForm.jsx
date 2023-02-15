@@ -21,7 +21,7 @@ export function ContactForm() {
     resetForm();
   };
 
-  const notify = () => toast('Here is your toast.');
+  const notify = () => toast.error('Write name, please');
 
   const validationSchema = Yup.object({
     name: Yup.string()
