@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormContact, Label, Span, Input, Button, Error } from './ContactForm.styled';
 import { addContact } from 'redux/contactSlice';
+import toast from 'react-hot-toast';
 
 export function ContactForm() {
   const dispatch = useDispatch();
@@ -20,13 +21,15 @@ export function ContactForm() {
     resetForm();
   };
 
+  const notify = () => toast('Here is your toast.');
+
   const validationSchema = Yup.object({
     name: Yup.string()
       .matches(
         /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
         'Name may contain only letters, apostrophe, dash and spaces.'
       )
-      .required('This field is required'),
+      .required(notify),
     number: Yup.string()
       .matches(
         /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/,
@@ -51,7 +54,7 @@ export function ContactForm() {
             placeholder=" "
           />
           <Span>Name</Span>
-          <Error component="div" name="name" />
+          {/* <Error component="div" name="name" /> */}
         </Label>
         
         <Label>       
