@@ -42,6 +42,7 @@ export function ContactForm() {
       onSubmit={handleSubmit}
     >
       <FormContact autoComplete="off">
+      {/* <FormControl> */}
         <Label>          
           <Input
             type="text"
@@ -50,8 +51,9 @@ export function ContactForm() {
             placeholder=" "
           />
           <Span>Name</Span>
+          <Error component="div" name="name" />
         </Label>
-        <Error component="div" name="name" />
+        
         <Label>       
           <Input       
             type="tel"
@@ -60,8 +62,10 @@ export function ContactForm() {
             placeholder=" "
           />
           <Span>Number</Span>
+          <Error component="div" name="number" />
         </Label>
-        <Error component="div" name="number" />
+        
+        {/* </FormControl> */}
         <Button type="submit">Add contact</Button>
       </FormContact>
       </Formik>

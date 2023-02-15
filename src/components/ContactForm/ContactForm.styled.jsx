@@ -9,19 +9,28 @@ gap: 24px;
 align-items: center;
 `;
 
+// export const FormControl = styled.div`
+//   position: relative;
+// `;
+
 export const Label = styled.label`
 position: relative;
-  width: 400px;
-  height: 10px;
-  margin-bottom: 50px;
-  &:last-child{
-    margin-bottom: 0;
-  }
-    & input:focus ~ span,
-    & input:valid ~ span{
-         transform: translateX(-13px) translateY(-30px);
-        font-size: 20px;
-  }
+display: block;
+width: 400px;
+height: 10px;
+margin-bottom: 50px;
+color: #000;
+font-size: 18px;
+
+// &focus::placeholder {
+//   color: #010101;
+// }
+
+& input:focus ~ span,
+& input:not(:placeholder-shown) ~ span{
+    transform: translateX(-13px) translateY(-30px);
+    font-size: 20px;
+}
 `;
 
 export const Input = styled(Field)`
@@ -36,6 +45,12 @@ background: #fff;
 padding: 10px;
 border-radius: 10px;
 font-size: 20px;
+
+&:focus,
+&:not(:placeholder-shown) {
+    border-color: #010101;
+    outline-color: rgba(33, 33, 33, 0.5);
+  }
 `;
 
 export const Span = styled.span`
@@ -67,8 +82,8 @@ width: 200px;
 
 export const Error = styled(ErrorMessage)`
   position: absolute;
-  bottom: -30%;
-  left: 4px;
+  bottom: -50px;
+  left: 15px;
   font-size: 12px;
   color: #ff4500;
 `;
